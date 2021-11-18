@@ -15,6 +15,22 @@ def print_board(board):
     print(board['middle-Left'] + '|' + board['middle-Middle'] + '|' + board['middle-Right'])
     print('-+-+-')
     print(board['down-Left'] + '|' + board['down-Middle'] + '|' + board['down-Right'])
+# todo: zastanów się czy nie zmienić nazewnictwa pól dla łatwiejszego grania
 
 
+turn = 'X'
+
+for i in range(9):
+    print_board(the_game_board)
+    print('Ruch gracza ' + turn + ' . W którym polu stawiasz znak?')
+    move = input()
+    the_game_board[move] = turn
+    if turn == 'X':
+        turn = 'O'
+    else:
+        turn = 'X'
 print_board(the_game_board)
+
+# todo: TicTacToe - dodaj sprawdzanie błędnych wpisów lokalizacji,
+# todo: TicTacToe - zablokuj możliwość wpisywania tam gdzie są dane
+# todo: TicTacToe - dodaj sprawdzanie wyniku gry
