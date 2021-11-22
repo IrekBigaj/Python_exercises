@@ -1,4 +1,8 @@
 # Band name generator #100days of code - day 1
+import introOutro
+
+# Special line for intro
+introOutro.intro_program("The Band Name Generator")
 
 # 1. Create a greeting for your program.
 print('Welcome to the Band Name Generator')
