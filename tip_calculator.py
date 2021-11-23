@@ -17,8 +17,7 @@ except TypeError:
     exit("Wrong input data! TypeError")
 except ValueError:
     exit("Wrong input data! ValueError")
-else:
-    exit("Wrong input data! OtherError")
+
 
 # What was the total bill? $124.56
 try:
@@ -27,8 +26,6 @@ except TypeError:
     exit("Wrong input data! TypeError")
 except ValueError:
     exit("Wrong input data! ValueError")
-else:
-    exit("Wrong input data! OtherError")
 
 if tip_percent == 10 or tip_percent == 12 or tip_percent == 15:
     print("Good choice!")
@@ -41,8 +38,6 @@ except TypeError:
     exit("Wrong input data! TypeError")
 except ValueError:
     exit("Wrong input data! ValueError")
-else:
-    exit("Wrong input data! OtherError")
 
 # amount_per_person = round((bill_amount/how_many_people) * (1 + tip_percent/100), 2)
 bill_with_tip = round(bill_amount * (1 + tip_percent/100), 2)
