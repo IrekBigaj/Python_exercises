@@ -43,7 +43,7 @@ else:
 
     # Rock wins against scissors. 0 > 2
     # Scissors win against paper. 2 >1
-    # Paper wins against rock. 1> 0
+    # Paper wins against rock.    1> 0
 
     if user_choice == 0 and computer_choice == 2:
         print("You WIN!")
