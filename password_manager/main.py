@@ -34,11 +34,9 @@ def save():
     website = str(website_data.get())
     email = str(email_data.get())
     password = str(password_data.get())
-    data = website + " | " + email + " | " + password + "\n"
-    new_data = {website:
-                    {"email": email,
-                     "password": password
-                    }
+    # data = website + " | " + email + " | " + password + "\n"
+    new_data = {website: {"email": email,
+                          "password": password}
                 }
     # print(data)
 
@@ -47,7 +45,7 @@ def save():
     else:
 
         is_ok = messagebox.askokcancel(title=website, message=f"There are the details entered: \nEmail: {email}\n"
-                                                      f"Password: {password}\nIs it ok to save?")
+                                                              f"Password: {password}\nIs it ok to save?")
         if is_ok:
             try:
                 with open("data.json", "r") as file:
@@ -75,20 +73,23 @@ def save():
 
 def find_password():
     searched_website = str(website_data.get())
-    print(searched_website)
+    # print(searched_website)
 
-    with open("data.json", "r") as file:
-        # Reading old data
-        saved_data = json.load(file)
-        try:
+    try:
+        with open("data.json", "r") as file:
+            # Reading old data
+            saved_data = json.load(file)
+    except FileNotFoundError:
+        messagebox.showerror(title="Error!", message="No Data File Found!\nFirstly add new password.")
+    else:
+        if searched_website in saved_data:
             saved_website_data = saved_data[searched_website]
-        except KeyError:
-            messagebox.showwarning(title="Warning!", message="No details for the website exist!")
-        else:
             passwd_saved_email = saved_website_data["email"]
             passwd_saved_password = saved_website_data["password"]
             messagebox.showinfo(title=searched_website, message=f"Email: {passwd_saved_email}\n\n"
                                                                 f"Password: {passwd_saved_password}")
+        else:
+            messagebox.showinfo(title="Warning!", message=f"No details for the {searched_website} exist!")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -130,7 +131,7 @@ generate_button.grid(column=2, row=3)
 add_button = Button(text="Add", width=44, command=save)
 add_button.grid(column=1, row=4, columnspan=2)
 
-add_button = Button(text="Search", width=15, command=find_password)
-add_button.grid(column=2, row=1)
+search_button = Button(text="Search", width=15, command=find_password)
+search_button.grid(column=2, row=1)
 
 window.mainloop()
