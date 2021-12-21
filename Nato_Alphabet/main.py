@@ -6,19 +6,29 @@ alphabet = pandas.read_csv("nato_phonetic_alphabet.csv")
 alphabet_dict = {row.letter: row.code for (index, row) in alphabet.iterrows()}  # list comprehension
 print(alphabet_dict)
 
-word = input("Enter a word: ").upper()
 
-# without loop - dictionary comprehension
-phonetic_word2 = [alphabet_dict[letter] for letter in word]
-print(phonetic_word2)
+def user_input():
+    word = input("Enter a word: ").upper()
+
+    # without loop - dictionary comprehension
+    try:
+        phonetic_word2 = [alphabet_dict[letter] for letter in word]
+    except KeyError:
+        print("Only letters in the alphabet please.")
+        user_input()
+    else:
+        print(phonetic_word2)
+
+
+user_input()
 
 # with loop
-phonetic_word = []
-for letter in word:
-    ph_letter = alphabet_dict[letter]
-    phonetic_word.append(ph_letter)
+# phonetic_word = []
+# for letter in word:
+#     ph_letter = alphabet_dict[letter]
+#     phonetic_word.append(ph_letter)
 
-print(phonetic_word)
+# print(phonetic_word)
 
 
 # student_dict = {
