@@ -1,4 +1,4 @@
-# #100days of code - day 29 - Password Manager
+# #100days of code - day 29-30 - Password Manager
 from tkinter import *
 from tkinter import messagebox
 from random import randint, choice, shuffle
