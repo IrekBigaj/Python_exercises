@@ -70,6 +70,26 @@ def save():
                 website_data.delete(0, END)
                 password_data.delete(0, END)
 
+# ---------------------------- FIND PASSWORD---------------------------- #
+
+
+def find_password():
+    searched_website = str(website_data.get())
+    print(searched_website)
+
+    with open("data.json", "r") as file:
+        # Reading old data
+        saved_data = json.load(file)
+        try:
+            saved_website_data = saved_data[searched_website]
+        except KeyError:
+            messagebox.showwarning(title="Warning!", message="No details for the website exist!")
+        else:
+            passwd_saved_email = saved_website_data["email"]
+            passwd_saved_password = saved_website_data["password"]
+            messagebox.showinfo(title=searched_website, message=f"Email: {passwd_saved_email}\n\n"
+                                                                f"Password: {passwd_saved_password}")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -92,8 +112,8 @@ password_label = Label(text="Password:")
 password_label.grid(column=0, row=3)
 
 # Data fields
-website_data = Entry(width=52)
-website_data.grid(column=1, row=1, columnspan=2)
+website_data = Entry(width=33)
+website_data.grid(column=1, row=1)
 website_data.focus()
 
 email_data = Entry(width=52)
@@ -110,5 +130,7 @@ generate_button.grid(column=2, row=3)
 add_button = Button(text="Add", width=44, command=save)
 add_button.grid(column=1, row=4, columnspan=2)
 
+add_button = Button(text="Search", width=15, command=find_password)
+add_button.grid(column=2, row=1)
 
 window.mainloop()
