@@ -1,7 +1,7 @@
 # #100days of code - day 39-40 - Flight Finder
 
 from data_manager import DataManager
-from pprint import pprint
+# from pprint import pprint
 from notification_manager import NotificationManager
 from flight_search import FlightSearch
 from datetime import datetime, timedelta
@@ -55,7 +55,8 @@ for destination in sheety_data:
     if flight is not None:
 
         if flight.price < destination["lowestPrice"]:
-            print(f"{flight.origin_airport} to {flight.destination_city}: {flight.price}PLN - Out: {flight.out_date} Return: {flight.return_date}")
+            print(f"{flight.origin_airport} to {flight.destination_city}: {flight.price}PLN - Out: {flight.out_date} "
+                  f"Return: {flight.return_date}")
             notification_manager.send_email(
                 price=flight.price,
                 origin_city=flight.origin_city,
@@ -63,5 +64,7 @@ for destination in sheety_data:
                 destination_city=flight.destination_city,
                 destination_airport=flight.destination_airport,
                 date_out=flight.out_date,
-                date_ret=flight.return_date
+                date_ret=flight.return_date,
+                airline=flight.airline,
+                link=flight.link
             )

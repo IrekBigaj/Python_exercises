@@ -7,7 +7,8 @@ class NotificationManager:
     def __init__(self):
         pass
 
-    def send_email(self, price, origin_city, origin_airport, destination_city, destination_airport, date_out, date_ret):
+    def send_email(self, price, origin_city, origin_airport, destination_city, destination_airport, date_out, date_ret,
+                   airline, link):
         self.price = price
         # self.departure = f"{origin_city}-{origin_airport}"
         self.departure = origin_airport
@@ -17,6 +18,8 @@ class NotificationManager:
         # self.destination = destination_airport
         self.date_out = date_out
         self.date_ret = date_ret
+        self.airline = airline
+        self.link = link
         # print("Low price alert!")
 
         with smtplib.SMTP("smtp.gmail.com") as connection:
@@ -27,7 +30,9 @@ class NotificationManager:
                                                                            f"Only: {self.price} PLN to fly from: "
                                                                            f"{self.departure}, "
                                                                            f"to: {self.destination}, "
-                                                                           f"from {self.date_out} to {self.date_ret}."
+                                                                           f"from {self.date_out} to {self.date_ret}.\n"
+                                                                           f"Flight by {self.airline}.\n"
+                                                                           f"Link to booking: {self.link}"
                                                                            f"\n\n"
                                                                            f"Regards,\n\nAlien Soft"
                                 )
